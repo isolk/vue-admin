@@ -4,7 +4,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@type": ["./src/assets/types.ts"],
+      "@const": ["./src/assets/constants.ts"],
     },
   },
 
