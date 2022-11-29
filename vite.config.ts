@@ -14,7 +14,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@type': fileURLToPath(new URL('./src/assets/types.ts', import.meta.url)),
-      '@const': fileURLToPath(new URL('./src/assets/constants.ts', import.meta.url))
+      '@const': fileURLToPath(new URL('./src/assets/constants.ts', import.meta.url)),
+      '@func': fileURLToPath(new URL('./src/assets/funcs.ts', import.meta.url)),
     }
   },
   server:{

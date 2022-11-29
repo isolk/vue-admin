@@ -7,12 +7,14 @@
       "@/*": ["./src/*"],
       "@type": ["./src/assets/types.ts"],
       "@const": ["./src/assets/constants.ts"],
+      "@func": ["./src/assets/funcs.ts"],
     },
+    "lib": ["ES2017.Object","esnext","dom"]
   },
 
   "references": [
     {
       "path": "./tsconfig.config.json"
     }
-  ]
+  ],
 }

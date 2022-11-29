@@ -1,21 +1,23 @@
 <script lang="ts" setup>
 import {menus} from '@const'
 const emit = defineEmits<{
-    (e:'select',index:string):void
+    (e:'navSelect',item:any):void
 }>()
 
-const select = (index:string,item:any,x:any)=>{
-    emit('select',index)
-    console.log(x)
+const onSelect = (index:string,pathAry:string[],item:any)=>{
+    emit('navSelect',item)
 }
+
 
 </script>
 
 <template>
-    <el-menu background-color router @select="select">
-        <el-sub-menu v-for="(submenus, index) in menus" :key="submenus.index" :index="submenus.path" style="{boder}">
+    <el-menu background-color router @select="onSelect">
+        <el-sub-menu v-for="(submenus, index) in menus"  :index="submenus.path" style="{boder}">
             <template #title>{{ submenus.title }}</template>
-            <el-menu-item v-for="(menus, i) in submenus.menus" :key="menus.index" :index="menus.path">
+            <el-menu-item v-for="(menus, i) in submenus.menus" :index="menus.path">
+                <component is="Edit" style="width:18;height:18"></component>
+                <!-- <Icon icon="Edit" size="18"></Icon> -->
                 <template #title>{{ menus.title }}</template>
             </el-menu-item>
         </el-sub-menu>

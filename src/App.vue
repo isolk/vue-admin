@@ -5,23 +5,21 @@ import Logo from './components/Logo.vue'
 import Bread from './components/Bread.vue'
 import { computed,reactive,ref } from 'vue';
 
-// const obj = reactive({
-//   curIndex:"1-1",
-// })
-
-var curIndex = ref("1-1")
+var it = ref<any>({index:"/"})
+const handNavSelect = (item:any) =>{
+  it.value = item
+}
 
 </script>
-
 <template>
   <el-container>
     <el-aside width="200px" direction="vertical">
-      <Nav @select="(index)=> curIndex=index" />
+      <Nav @navSelect="handNavSelect" />
     </el-aside>
 
     <el-container>
       <el-header height="4rem">
-        <Bread :curIndex="curIndex" />
+        <Bread :item="it" />
       </el-header>
       <el-main>
         <RouterView />

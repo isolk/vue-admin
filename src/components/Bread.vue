@@ -1,49 +1,41 @@
 <template>
     <el-breadcrumb>
-        <el-breadcrumb-item v-for="i in list" :to="i.path">
-            {{ i.title }}
+        <el-breadcrumb-item to="/">
+            首页
+        </el-breadcrumb-item>
+        <el-breadcrumb-item v-for="i in list">
+            {{i}}
         </el-breadcrumb-item>
     </el-breadcrumb>
-    {{pros.curIndex}}
 </template>
 
 
 
 <script lang="ts" setup>
-import type { Menu } from "@/assets/types";
 import { menus } from "@const";
+import type { Edit } from "@element-plus/icons-vue";
+import { ITEM_RENDER_EVT } from "element-plus/es/components/virtual-list/src/defaults";
 import { computed, watch } from "vue";
-const pros = defineProps({
-    curIndex: String
-});
-
-interface ListItem {
-    title: string
-    path: string
-}
-
-function deal(menu: Menu, list: ListItem[]) {
-    list.push({ title: menu.title, path: menu.path })
-    menu.menus.forEach(menu => {
-        if (pros.curIndex?.startsWith(menu.index)) {
-            console.log("b:",pros.curIndex,"--",menu.index)
-            deal(menu, list)
-            return
-        }
-    })
-}
-
-const list = computed(
-    () => {
-        var res: ListItem[] = []
-        menus.forEach(menu => {
-            console.log("a",pros.curIndex,"--",menu.index)
-            if (pros.curIndex?.startsWith(menu.index)) {
-                deal(menu, res)
-            }
-        })
-        console.log("list change",res)
-        return res
+const props = defineProps<{
+    item:{
+        index:string,
+        indexPath:string[],
     }
-)
+}>();
+
+const list = computed(()=>{
+    let li:string[] = []
+    menus.forEach(el => {
+        if(props.item.index?.startsWith(el.path))
+        {
+            li.push(el.title)
+            el.menus.forEach(subel=>{
+                if(props.item.index.startsWith(subel.path)){
+                    li.push(subel.title)
+                }
+            })
+        }
+    });
+    return li
+})
 </script>
