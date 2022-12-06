@@ -16,6 +16,7 @@ export default defineConfig({
       '@type': fileURLToPath(new URL('./src/assets/types.ts', import.meta.url)),
       '@const': fileURLToPath(new URL('./src/assets/constants.ts', import.meta.url)),
       '@func': fileURLToPath(new URL('./src/assets/funcs.ts', import.meta.url)),
+      '@lib': fileURLToPath(new URL('./src/components', import.meta.url)),
     }
   },
   server:{
